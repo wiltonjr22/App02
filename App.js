@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View,Text,StyleSheet,SafeAreaView,StatusBar,TouchableOpacity,FlatList} from 'react-native';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import TaskList from './src/components/TaskList';
+
 export default function App(){
+  const [task, setTask] = useState([
+    { key: 1, task: 'comprar pao'},
+    { key: 2, task: 'comprar arroz'},
+    { key: 3, task: 'ir para academia'},
+    { key: 4, task: 'comprar carro'},
+  ]);
+
   return(
     <SafeAreaView style={style.container}>
-      <StatusBar backgroundColor="#171d31" barStyle="light-content"/>
+     
 
       <View style={style.container}>
         <Text style={style.title}>Minhas Tarefas</Text>
       </View>
+
+      <FlatList
+      showsHorizontalScrollIndicator={false}
+      data={task}
+      keyExtractor={ (item) => String(item.key)}
+      renderItem={({item}) => <TaskList data={item} /> }
+      />
 
       <TouchableOpacity style={style.fab}>
       <IconAntDesign name="plus" size={35} color="#fff"/>
@@ -50,3 +66,5 @@ const style = StyleSheet.create({
     }
   }
 })
+
+
