@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View,Text,StyleSheet,SafeAreaView,StatusBar,TouchableOpacity,FlatList, Modal} from 'react-native';
+import {View,Text,StyleSheet,SafeAreaView,StatusBar,TouchableOpacity,FlatList, Modal, TextInput} from 'react-native';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import TaskList from './src/components/TaskList';
 
@@ -30,8 +30,24 @@ export default function App(){
       />
 
       <Modal animationType="slide" transparent={false} visible={open}>
-        <SafeAreaView>
-          <Text> Modal </Text>
+        <SafeAreaView style={style.modal}>
+          <View style={style.modalHeader}>
+            <TouchableOpacity style={{marginLeft: 10, marginRight: 10}} onPress={ () => setOpen(false) }>
+              <IconAntDesign name="arrowleft" size={35} color="#fff"/>
+            </TouchableOpacity>
+            <Text style={style.modalTittle}>Nova Tarefa</Text>
+          </View>
+
+          <View style={style.modalBody}>
+            <TextInput
+            placeholder="O que precisa fazer hoje?"
+            style={style.input}
+            />
+            <TouchableOpacity style={style.handleAdd}>
+              <Text style={style.handleAddText}> Cadastrar </Text>
+            </TouchableOpacity>
+          </View>
+
         </SafeAreaView>
       </Modal>
 
@@ -73,6 +89,39 @@ const style = StyleSheet.create({
       height: 3,
 
     }
+  },
+  modal:{
+    flex: 1,
+    backgroundColor: '#171d31',
+  },
+  modalHeader:{
+    marginLeft: 10,
+    marginTop: 25,
+    flexDirection:'row',
+    alignItems: 'center',
+  },
+  modalTittle:{
+    marginLeft: 15,
+    fontSize: 25,
+    color: "#fff",
+  },
+  modalBody:{
+    marginTop: 15,
+  },
+  input:{
+    fontSize: 15,
+    marginLeft: 10,
+    marginTop: 30,
+    marginRight: 10,
+    backgroundColor:"#fff",
+    padding: 9,
+    height: 85,
+    textAlignVertical:'top',
+    color: "#000",
+    borderRadius: 5,
+  },
+  handleAdd:{
+
   }
 })
 
