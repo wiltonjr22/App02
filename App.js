@@ -19,7 +19,10 @@ function handleAdd(){
   setTask([...task,data]);
   setOpen(false);
   setInput('');
+}
 
+function handleDelete(){
+alert('oiiii')
 }
 
   return( 
@@ -35,7 +38,7 @@ function handleAdd(){
       showsHorizontalScrollIndicator={false}
       data={task}
       keyExtractor={ (item) => String(item.key)}
-      renderItem={({item}) => <TaskList data={item} /> }
+      renderItem={({item}) => <TaskList data={item} handleDelete={handleDelete} /> }
       />
 
       <Modal animationType="slide" transparent={false} visible={open}>
