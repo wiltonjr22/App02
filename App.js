@@ -4,16 +4,25 @@ import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import TaskList from './src/components/TaskList';
 
 export default function App(){
-  const [task, setTask] = useState([
-    { key: 1, task: 'comprar pao'},
-    { key: 2, task: 'comprar arroz'},
-    { key: 3, task: 'ir para academia'},
-    { key: 4, task: 'comprar carro'},
-  ]);
-
+  const [task, setTask] = useState([]);
   const [open,setOpen] = useState (false);
+  const [input,setInput] = useState ('');
 
-  return(
+function handleAdd(){
+  if(input === '') return;
+
+  const data = {
+    key: input,
+    task: input
+  };
+
+  setTask([...task,data]);
+  setOpen(false);
+  setInput('');
+
+}
+
+  return( 
     <SafeAreaView style={style.container}>
      
 
@@ -40,10 +49,15 @@ export default function App(){
 
           <View style={style.modalBody}>
             <TextInput
+            multiline={true}
+            placeholderTextColor="#747474"
+            autoCorrect={false}
             placeholder="O que precisa fazer hoje?"
             style={style.input}
+            value={input}
+            onChangeText={ (texto) => setInput(texto) }
             />
-            <TouchableOpacity style={style.handleAdd}>
+            <TouchableOpacity style={style.handleAdd} onPress = {handleAdd}>
               <Text style={style.handleAddText}> Cadastrar </Text>
             </TouchableOpacity>
           </View>
@@ -75,7 +89,7 @@ const style = StyleSheet.create({
     position: 'absolute',
     width: 60,
     height: 60,
-    backgroundColor: "#0094ff",
+    backgroundColor: '#0094ff',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 30,
@@ -103,7 +117,7 @@ const style = StyleSheet.create({
   modalTittle:{
     marginLeft: 15,
     fontSize: 25,
-    color: "#fff",
+    color: '#fff',
   },
   modalBody:{
     marginTop: 15,
@@ -113,7 +127,7 @@ const style = StyleSheet.create({
     marginLeft: 10,
     marginTop: 30,
     marginRight: 10,
-    backgroundColor:"#fff",
+    backgroundColor:'#fff',
     padding: 9,
     height: 85,
     textAlignVertical:'top',
@@ -121,8 +135,18 @@ const style = StyleSheet.create({
     borderRadius: 5,
   },
   handleAdd:{
-
-  }
+    backgroundColor: '#fff',
+      marginTop: 10,
+      alignItems:'center',
+      justifyContent: 'center',
+      marginLeft: 10,
+      marginRight: 10,
+      height: 40,
+      borderRadius: 5
+  },
+  handleAddText:{
+    fontSize: 20,
+  },
 })
 
 
