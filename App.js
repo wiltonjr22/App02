@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View,Text,StyleSheet,SafeAreaView,StatusBar,TouchableOpacity,FlatList} from 'react-native';
+import {View,Text,StyleSheet,SafeAreaView,StatusBar,TouchableOpacity,FlatList, Modal} from 'react-native';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import TaskList from './src/components/TaskList';
 
@@ -10,6 +10,8 @@ export default function App(){
     { key: 3, task: 'ir para academia'},
     { key: 4, task: 'comprar carro'},
   ]);
+
+  const [open,setOpen] = useState (false);
 
   return(
     <SafeAreaView style={style.container}>
@@ -27,7 +29,13 @@ export default function App(){
       renderItem={({item}) => <TaskList data={item} /> }
       />
 
-      <TouchableOpacity style={style.fab}>
+      <Modal animationType="slide" transparent={false} visible={open}>
+        <SafeAreaView>
+          <Text> Modal </Text>
+        </SafeAreaView>
+      </Modal>
+
+      <TouchableOpacity style={style.fab} onPress= { () => setOpen(true)}>
       <IconAntDesign name="plus" size={35} color="#fff"/>
       </TouchableOpacity>
 
