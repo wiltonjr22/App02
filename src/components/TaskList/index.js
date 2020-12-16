@@ -18,12 +18,11 @@ export default function TaskList({data, handleDelete}){
 const style = StyleSheet.create({
     container:{
         flex: 1,
-        margin: 8,
+        margin: 5,
         flexDirection: 'row',
-        alignItems: 'center',
         backgroundColor: '#FFF',
-        borderRadius: 5,
-        padding: 7,
+        borderRadius: 15,
+        padding: 8,
         elevation: 1.5,
         shadowColor: '#000',
         shadowOpacity: 0.2,
@@ -37,6 +36,5 @@ const style = StyleSheet.create({
         paddingRight: 20,
         paddingLeft: 8,
         fontSize: 20,
-
     },
 });

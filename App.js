@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {View,Text,StyleSheet,SafeAreaView,StatusBar,TouchableOpacity,FlatList, Modal, TextInput} from 'react-native';
+import React, { useState, useCallback } from 'react';
+import {View,Text,StyleSheet,SafeAreaView,StatusBar,TouchableOpacity,FlatList, Modal, TextInput, AsyncStorage } from 'react-native';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import TaskList from './src/components/TaskList';
 
@@ -21,9 +21,10 @@ function handleAdd(){
   setInput('');
 }
 
-function handleDelete(){
-alert('oiiii')
-}
+  const handleDelete = useCallback((data) => {
+    const find = task.filter(r => r.key !== data.key);
+    setTask(find);
+  })
 
   return( 
     <SafeAreaView style={style.container}>
